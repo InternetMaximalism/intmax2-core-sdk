@@ -1,0 +1,24 @@
+{
+  "name": "intmax2-core-sdk",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./src/_cjs/index.js",
+  "module": "./src/_esm/index.js",
+  "types": "./src/_types/index.d.ts",
+  "files": ["src/_cjs", "src/_esm", "src/_types"],
+  "scripts": {
+    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:types",
+    "build:cjs": "tsc --project ./tsconfig.build.json --module commonjs --outDir ./src/_cjs --removeComments --verbatimModuleSyntax false && printf '{\"type\":\"commonjs\"}' > ./src/_cjs/package.json",
+    "build:esm": "tsc --project ./tsconfig.build.json --module es2015 --outDir ./src/_esm && printf '{\"type\": \"module\",\"sideEffects\":false}' > ./src/_esm/package.json",
+    "build:types": "tsc --project ./tsconfig.build.json --module esnext --outDir ./src/_types --declaration --declarationMap --emitDeclarationOnly",
+    "clean": "rimraf src/_esm src/_cjs src/_types",
+    "format": "npx @biomejs/biome format --write src",
+    "lint": "npx @biomejs/biome lint --write src",
+    "check": "npx @biomejs/biome check --write src"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "rimraf": "^5.0.10",
+    "typescript": "^5.5.4"
+  }
+}

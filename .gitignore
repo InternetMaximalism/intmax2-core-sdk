@@ -1,0 +1,12 @@
+_cjs
+_esm
+_types
+*.local
+.DS_Store
+.eslintcache
+.next
+bench
+cache
+coverage
+node_modules
+tsconfig*.tsbuildinfo
